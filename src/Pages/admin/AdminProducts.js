@@ -32,7 +32,7 @@ export default function AdminProducts() {
     const productRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/admin/products?page=${page}`
     );
-    console.log(productRes);
+    // console.log(productRes);
     setProducts(productRes.data.products);
     setPagination(productRes.data.pagination);
   };
@@ -130,8 +130,8 @@ export default function AdminProducts() {
               );
             })}
           </tbody>
-          <Pagination pagination={pagination} changePage={getProducts} />
         </table>
+        <Pagination pagination={pagination} changePage={getProducts} />
       </div>
     </>
   );

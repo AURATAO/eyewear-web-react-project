@@ -23,7 +23,7 @@ export default function Login() {
       document.cookie = `auraToken=${token}; expires=${new Date(expired)}`;
       //儲存token
       if (res.data.success === true) {
-        navigate("./admin/products");
+        navigate("/admin/products");
       }
     } catch (error) {
       //   console.log(error.response.data);

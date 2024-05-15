@@ -1,6 +1,12 @@
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
+import Message from "../../components/Message";
+import {
+  MessageContext,
+  messageReducer,
+  initState,
+} from "../../store/messageStore";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -8,13 +14,14 @@ export default function Dashboard() {
     document.cookie = "auraToken =;";
     navigate("/");
   };
+  const reducer = useReducer(messageReducer, initState);
   //取出token
 
   const token = document.cookie
     .split("; ")
     .find((row) => row.startsWith("auraToken"))
     ?.split("=")[1];
-  console.log(token);
+  // console.log(token);
   axios.defaults.headers.common["Authorization"] = token;
   useEffect(() => {
     //這個async是用來作檢查token是否是假token或過期，以防止他進去後臺
@@ -32,7 +39,8 @@ export default function Dashboard() {
     })();
   });
   return (
-    <>
+    <MessageContext.Provider value={reducer}>
+      <Message />
       <nav className="navbar navbar-expand-lg bg-dark">
         <div className="container-fluid">
           <p className="text-white mb-0">HEX EATS 後台管理系統</p>
@@ -98,6 +106,6 @@ export default function Dashboard() {
           {/*Products end*/}
         </div>
       </div>
-    </>
+    </MessageContext.Provider>
   );
 }

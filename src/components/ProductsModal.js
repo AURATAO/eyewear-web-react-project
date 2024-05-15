@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import {
+  MessageContext,
+  handleSuccessMessage,
+  handleErrorMessage,
+} from "../store/messageStore";
 
 export default function ProductsModal({
   closeProductModal,
@@ -18,6 +23,8 @@ export default function ProductsModal({
     is_enabled: 1,
     imageUrl: "",
   });
+
+  const [, dispatch] = useContext(MessageContext); //前面的逗號事message內容，可以清除，但逗號保留
 
   useEffect(() => {
     // console.log(type, tempProduct);
@@ -58,23 +65,26 @@ export default function ProductsModal({
         method = "put";
       }
       const res = await axios[method](api, { data: tempData });
+      console.log(res);
+      handleSuccessMessage(dispatch, res);
       closeProductModal();
       getProducts();
     } catch (error) {
       console.log(error);
+      handleErrorMessage(dispatch, error);
     }
-    // try {
-    //   const res = await axios.post(
-    //     `/v2/api/${process.env.REACT_APP_API_PATH}/admin/product`,
-    //     { data: tempData }
-    //   );
-    //   console.log(res);
-    //   closeProductModal();
-    //   getProducts();
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
+  // try {
+  //   const res = await axios.post(
+  //     `/v2/api/${process.env.REACT_APP_API_PATH}/admin/product`,
+  //     { data: tempData }
+  //   );
+  //   console.log(res);
+  //   closeProductModal();
+  //   getProducts();
+  // } catch (error) {
+  //   console.log(error);
+  // }
   return (
     <div
       className="modal fade"

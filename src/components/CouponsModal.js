@@ -10,7 +10,7 @@ export default function CouponsModal({
   const [tempData, setTempData] = useState({
     title: "",
     is_enabled: 1,
-    percent: 70,
+    percent: 80,
     due_date: 1555459200,
   });
 
@@ -23,7 +23,7 @@ export default function CouponsModal({
       setTempData({
         title: "",
         is_enabled: 1,
-        percent: 70,
+        percent: 80,
         due_date: 1555459200,
       });
       setDate(new Date());
@@ -53,9 +53,12 @@ export default function CouponsModal({
         method = "put";
       }
       const res = await axios[method](api, {
-        data: { ...tempData },
-        due_date: date.getTime(), //這邊就會轉換成unix timestamp
+        data: {
+          ...tempData,
+          due_date: date.getTime(), //這邊就會轉換成unix timestamp
+        },
       });
+      console.log(res);
       closeModal();
       getCoupons();
     } catch (error) {

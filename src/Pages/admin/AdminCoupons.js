@@ -132,8 +132,8 @@ export default function AdminCoupons() {
               );
             })}
           </tbody>
-          <Pagination pagination={pagination} changePage={getCoupons} />
         </table>
+        <Pagination pagination={pagination} changePage={getCoupons} />
       </div>
     </>
   );
