@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 
 export default function ProductDetail() {
   const [product, setProduct] = useState({});
   const [cartQuantity, setCartQuantaty] = useState(1);
   const { id } = useParams();
-  console.log(id);
+  const [isLoading, setIsLoading] = useState(false);
+  const { getCart } = useOutletContext();
 
   const getProduct = async (id) => {
     const productRes = await axios.get(
@@ -19,19 +20,21 @@ export default function ProductDetail() {
   const addCart = async () => {
     const data = {
       data: {
-        product_id: "-L9tH8jxVb2Ka_DYPwng",
-        qty: 1,
+        product_id: product.id,
+        qty: cartQuantity,
       },
     };
-
     try {
       const res = await axios.post(
         `/v2/api/${process.env.REACT_APP_API_PATH}/cart`,
         data
       );
       console.log(res);
+      getCart();
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 
@@ -148,6 +151,7 @@ export default function ProductDetail() {
             type="button"
             className="btn btn-dark w-100 rounded-0 py-3"
             onClick={() => addCart()}
+            disabled={isLoading}
           >
             ADD TO THE CART
           </button>

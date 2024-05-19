@@ -6,7 +6,7 @@ export default function Home() {
           <div className="col-md-4 mt-md-4">
             <div className="card border-0 mb-4">
               <img
-                src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
+                src="https://i.pinimg.com/564x/b0/09/fd/b009fd9e0d3f5809205a8427f1c3f110.jpg"
                 className="card-img-top rounded-0"
                 alt="..."
               />
@@ -24,7 +24,7 @@ export default function Home() {
           <div className="col-md-4 mt-md-4">
             <div className="card border-0 mb-4">
               <img
-                src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
+                src="https://i.pinimg.com/564x/be/75/05/be750533a6c68046d90d0e3b726e0b28.jpg"
                 className="card-img-top rounded-0"
                 alt="..."
               />
@@ -42,7 +42,7 @@ export default function Home() {
           <div className="col-md-4 mt-md-4">
             <div className="card border-0 mb-4">
               <img
-                src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
+                src="https://i.pinimg.com/564x/87/96/a5/8796a585ac84229724e22e50daf7cf78.jpg"
                 className="card-img-top rounded-0"
                 alt="..."
               />
@@ -144,7 +144,12 @@ export default function Home() {
         <div className="row">
           <div className="col-md-6">
             <img
-              src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+              src="https://i.pinimg.com/564x/78/89/45/788945f2755fd791e2e95a7067871ea9.jpg"
+              alt=""
+              className="img-fluid"
+            />
+            <img
+              src="https://i.pinimg.com/originals/bd/dd/04/bddd0411a50da710aca116fe029db84d.jpg"
               alt=""
               className="img-fluid"
             />
@@ -160,7 +165,12 @@ export default function Home() {
         <div className="row flex-row-reverse justify-content-between mt-4">
           <div className="col-md-6">
             <img
-              src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+              src="https://i.pinimg.com/564x/d0/75/6e/d0756e8f36ce871ee5194e907e17aa56.jpg"
+              alt=""
+              className="img-fluid"
+            />
+            <img
+              src="https://i.pinimg.com/564x/37/19/80/371980a622161268885108946c58d99d.jpg"
               alt=""
               className="img-fluid"
             />

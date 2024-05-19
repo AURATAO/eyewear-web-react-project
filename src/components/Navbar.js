@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ cartData }) {
   return (
     <>
       <div className="position-relative">
@@ -52,10 +52,13 @@ export default function Navbar() {
                   </NavLink>
                 </li>
                 <NavLink
-                  className="nav-item nav-link me-4 mt-2 active"
+                  className="nav-item nav-link me-4 mt-2 active position-relative"
                   to={"/cart"}
                 >
                   <i className="bi bi-cart4 mt-5"></i>
+                  <span className="position-absolute top-1 start-95 translate-middle badge rounded-pill text-bg-secondary">
+                    {cartData?.carts?.length}
+                  </span>
                 </NavLink>
               </ul>
             </div>

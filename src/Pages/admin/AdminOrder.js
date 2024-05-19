@@ -6,11 +6,11 @@ import Pagination from "../../components/Pagination";
 import { Modal } from "bootstrap";
 
 export default function AdminOrder() {
-  const [orders, setOrders] = useState([]);
+  const [order, serOrder] = useState([]);
   const [pagination, setPagination] = useState({});
   //決定modal展開的用途 -- 這邊是要做編輯品項用
   // const [type, setType] = useState("create");
-  const [tempOrder, setTempOrders] = useState({});
+  const [tempOrder, setTempOrder] = useState({});
 
   const orderModal = useRef(null);
   // const deleteModal = useRef(null);
@@ -30,19 +30,39 @@ export default function AdminOrder() {
 
   const getOrders = async (page = 1) => {
     const res = await axios.get(
-      `/v2/api/${process.env.REACT_APP_API_PATH}/orders?page=${page}`
+      `/v2/api/${process.env.REACT_APP_API_PATH}/admin/orders?page=${page}`
     );
     console.log(res);
-    setOrders(res.data.orders);
+    serOrder(res.data.orders);
     setPagination(res.data.pagination);
   };
 
   const openOrderModal = (order) => {
-    setTempOrders(order);
+    setTempOrder(order);
     orderModal.current.show();
   };
   const closeModal = () => {
     orderModal.current.hide();
+  };
+
+  const addOrder = async () => {
+    const data = {
+      data: {
+        user: {
+          name: order.id,
+          email: order.email,
+          tel: order.tel,
+          address: order.address,
+        },
+        message: order.message,
+      },
+    };
+    const res = await axios.post(
+      `/v2/api/${process.env.REACT_APP_API_PATH}/order`,
+      data
+    );
+
+    console.log(res);
   };
   // const openDeleteModal = (order) => {
   //   setTempOrders(order);
@@ -98,7 +118,7 @@ export default function AdminOrder() {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => {
+            {order.map((order) => {
               return (
                 <tr key={order.id}>
                   <td>{order.id}</td>

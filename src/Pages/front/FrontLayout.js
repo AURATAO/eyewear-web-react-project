@@ -1,11 +1,32 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 
 export default function FrontLayout() {
+  const [cartData, setCartData] = useState({});
+
+  const getCart = async () => {
+    try {
+      const res = await axios.get(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/cart`
+      );
+      console.log("購物車資訊：", res);
+      setCartData(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCart();
+  }, []);
+
   return (
     <>
-      <Navbar />
-      <Outlet />
+      <Navbar cartData={cartData} />
+      <Outlet context={{ getCart, cartData }} />
+      {/*這邊的context={{getCart}} 是指 在其他產品按下加入購物車時，他會自動讓購物車增加一 這邊寫完再記得回productDetail 解構的形式傳回去 ＊記得這裡的{getCart}是一個物件形式 */}
       <div className="bg-dark py-5">
         <div className="container">
           <div className="d-flex align-items-center justify-content-between text-white mb-md-7 mb-4">
@@ -14,17 +35,17 @@ export default function FrontLayout() {
             </a>
             <ul className="d-flex list-unstyled mb-0 h4">
               <li>
-                <a href="#" className="text-white mx-3">
+                <a className="text-white mx-3">
                   <i className="fab fa-facebook"></i>
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white mx-3">
+                <a className="text-white mx-3">
                   <i className="fab fa-instagram"></i>
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white ms-3">
+                <a className="text-white ms-3">
                   <i className="fab fa-line"></i>
                 </a>
               </li>
